@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/emre-yuz/miniproject4_backend1/compare/v1.0.2...v1.0.3) (2026-06-07)
+
+
+### Bug Fixes
+
+* sshkeys again ([0175694](https://github.com/emre-yuz/miniproject4_backend1/commit/0175694a06080b255ff9bfc17c480804e872f2ac))
+
 ## [1.0.2](https://github.com/emre-yuz/miniproject4_backend1/compare/v1.0.1...v1.0.2) (2026-06-07)
 
 
