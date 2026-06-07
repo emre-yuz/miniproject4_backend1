@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/emre-yuz/miniproject4_backend1/compare/v1.0.0...v1.0.1) (2026-06-07)
+
+
+### Bug Fixes
+
+* issues ([b670cf0](https://github.com/emre-yuz/miniproject4_backend1/commit/b670cf02c13e6d01ba9785eb74fa26064bf20a40))
+
 # 1.0.0 (2026-06-07)
 
 
