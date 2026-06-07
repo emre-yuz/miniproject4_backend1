@@ -1,7 +1,9 @@
 import io
 import torch
 from PIL import Image
-from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion import StableDiffusionPipeline
+from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion import (
+    StableDiffusionPipeline,
+)
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
@@ -12,7 +14,8 @@ from transformers import pipeline
 
 class HuggingFaceTasks:
     def __init__(self):
-        print("Initializing Hugging Face Tasks... (This may take a few minutes)")
+        print("Initializing Hugging Face Tasks... "
+              "(This may take a few minutes)")
 
         self.device_name = "cuda" if torch.cuda.is_available() else "cpu"
         self.device_index = 0 if torch.cuda.is_available() else -1
@@ -60,7 +63,13 @@ class HuggingFaceTasks:
             history = []
 
         chat_messages = [
-            {"role": "system", "content": "You are RoboMunch, an artist chatbot. Keep responses concise."}
+            {
+                "role": "system",
+                "content": (
+                    "You are RoboMunch, an artist chatbot. "
+                    "Keep responses concise."
+                )
+            }
         ]
         for msg in history:
             if isinstance(msg, dict):
@@ -84,13 +93,15 @@ class HuggingFaceTasks:
             response_data = output[0]["generated_text"]
             if isinstance(response_data, list):
                 last = response_data[-1]
-                bot_reply = self.extract_content(
-                    last.get("content", "")) if isinstance(last, dict) else str(last)
+                if isinstance(last, dict):
+                    bot_reply = self.extract_content(last.get("content", ""))
+                else:
+                    bot_reply = str(last)
             else:
                 bot_reply = str(response_data)
                 if "<|im_start|>assistant" in bot_reply:
-                    bot_reply = bot_reply.split(
-                        "<|im_start|>assistant")[-1].split("<|im_end|>")[0].strip()
+                    bot_reply = bot_reply.split("<|im_start|>assistant")[-1]
+                    bot_reply = bot_reply.split("<|im_end|>")[0].strip()
             return bot_reply
         except Exception as e:
             print(f"Text Generation Error: {e}")
@@ -162,7 +173,11 @@ async def get_resolution(image: UploadFile = File(...)):
     try:
         pil_image = Image.open(io.BytesIO(image_bytes))
         width, height = pil_image.size
-        return {"width": width, "height": height, "resolution": f"{width}x{height}"}
+        return {
+            "width": width,
+            "height": height,
+            "resolution": f"{width}x{height}"
+        }
     except Exception as exc:
         return {"error": str(exc)}
 
