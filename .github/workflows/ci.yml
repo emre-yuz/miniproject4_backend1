@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend_cloud/requirements.txt
+          pip install flake8
+      - name: Run Python compilation check
+        run: python -m compileall backend_cloud
+      - name: Run lint
+        run: flake8 backend_cloud image_service --max-line-length=120
+      - name: Show version
+        run: cat backend_cloud/version.txt
