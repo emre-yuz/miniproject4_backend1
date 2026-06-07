@@ -21,8 +21,8 @@ jobs:
           pip install -r requirements.txt
           pip install flake8
       - name: Run Python compilation check
-        run: python -m compileall backend_cloud
-      - name: Run lint
-        run: flake8 backend_cloud image_service --max-line-length=120
+        run: python -m compileall .
+      - name: Run linter
+        run: flake8 .
       - name: Show version
         run: cat VERSION
