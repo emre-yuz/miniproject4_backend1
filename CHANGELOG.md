@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/emre-yuz/miniproject4_backend1/compare/v1.0.1...v1.0.2) (2026-06-07)
+
+
+### Bug Fixes
+
+* lint & sshkeys ([78dfe57](https://github.com/emre-yuz/miniproject4_backend1/commit/78dfe570ef0201e5a2ef47a91810df1b099b958e))
+* ssh2 ([8617d5f](https://github.com/emre-yuz/miniproject4_backend1/commit/8617d5f6cf8a3528294ce7c390f6400e3623f12e))
+
 ## [1.0.1](https://github.com/emre-yuz/miniproject4_backend1/compare/v1.0.0...v1.0.1) (2026-06-07)
 
 
