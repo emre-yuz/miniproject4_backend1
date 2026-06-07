@@ -1,4 +1,4 @@
-﻿import io
+import io
 import torch
 from PIL import Image
 from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion import StableDiffusionPipeline
@@ -8,6 +8,7 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 import uvicorn
 from transformers import pipeline
+
 
 class HuggingFaceTasks:
     def __init__(self):
@@ -67,7 +68,8 @@ class HuggingFaceTasks:
                 content = self.extract_content(msg.get("content", ""))
             else:
                 role = getattr(msg, "role", "user")
-                content = self.extract_content(getattr(msg, "content", str(msg)))
+                content = self.extract_content(
+                    getattr(msg, "content", str(msg)))
             chat_messages.append({"role": role, "content": content})
 
         chat_messages.append({"role": "user", "content": prompt})
@@ -82,11 +84,13 @@ class HuggingFaceTasks:
             response_data = output[0]["generated_text"]
             if isinstance(response_data, list):
                 last = response_data[-1]
-                bot_reply = self.extract_content(last.get("content", "")) if isinstance(last, dict) else str(last)
+                bot_reply = self.extract_content(
+                    last.get("content", "")) if isinstance(last, dict) else str(last)
             else:
                 bot_reply = str(response_data)
                 if "<|im_start|>assistant" in bot_reply:
-                    bot_reply = bot_reply.split("<|im_start|>assistant")[-1].split("<|im_end|>")[0].strip()
+                    bot_reply = bot_reply.split(
+                        "<|im_start|>assistant")[-1].split("<|im_end|>")[0].strip()
             return bot_reply
         except Exception as e:
             print(f"Text Generation Error: {e}")
@@ -120,6 +124,7 @@ app.add_middleware(
 )
 
 tasks = HuggingFaceTasks()
+
 
 class ChatRequest(BaseModel):
     prompt: str

@@ -1,3 +1,5 @@
+name: CI Semantic Release
+
 on:
   push:
     branches: [main]
