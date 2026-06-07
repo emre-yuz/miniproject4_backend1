@@ -24,7 +24,7 @@ jobs:
         with:
           context: backend_cloud
           push: true
-          tags: ${{ secrets.REGISTRY_HOST }} /robo-munch-backend-cloud:latest
+          tags: ${{ secrets.REGISTRY_HOST }}/robo-munch-backend-cloud:latest
       - name: Deploy to VM via SSH
         uses: appleboy/ssh-action@v0.1.9
         with:
