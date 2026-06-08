@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: docker
     steps:
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip
       - uses: actions/checkout@v4
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -25,15 +27,17 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ secrets.REGISTRY_USERNAME }}/robo-munch-backend-cloud:latest
+          tags: ${{ secrets.REGISTRY_HOST }}/${{ secrets.REGISTRY_USERNAME }}/robo-munch-backend-cloud:latest
       - name: Deploy to VM via SSH
         uses: appleboy/ssh-action@v0.1.9
         with:
           host: ${{ secrets.VM_HOST }}
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.VM_SSH_KEY }}
+          timeout: 900
+          command_timeout: 900
           script: |
-            docker pull ${{ secrets.REGISTRY_USERNAME }}/robo-munch-backend-cloud:latest
+            docker pull ${{ secrets.REGISTRY_HOST }}/${{ secrets.REGISTRY_USERNAME }}/robo-munch-backend-cloud:latest
             docker stop robo-munch-backend-cloud || true
             docker rm robo-munch-backend-cloud || true
-            docker run -d --name robo-munch-backend-cloud -p 8000:8000 ${{ secrets.REGISTRY_USERNAME }}/robo-munch-backend-cloud:latest
+            docker run -d --name robo-munch-backend-cloud -p 8000:8000 ${{ secrets.REGISTRY_HOST }}/${{ secrets.REGISTRY_USERNAME }}/robo-munch-backend-cloud:latest
