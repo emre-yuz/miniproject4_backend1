@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/emre-yuz/miniproject4_backend1/compare/v1.0.4...v1.0.5) (2026-06-08)
+
+
+### Bug Fixes
+
+* asdaf ([463576e](https://github.com/emre-yuz/miniproject4_backend1/commit/463576e25a678cc473abef3918dba33fe8be91fa))
+
 ## [1.0.4](https://github.com/emre-yuz/miniproject4_backend1/compare/v1.0.3...v1.0.4) (2026-06-07)
 
 
