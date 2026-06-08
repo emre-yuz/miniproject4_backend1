@@ -34,8 +34,8 @@ jobs:
           host: ${{ secrets.VM_HOST }}
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.VM_SSH_KEY }}
-          timeout: 900
-          command_timeout: 900
+          timeout: 900s
+          command_timeout: 900s
           script: |
             docker pull ${{ secrets.REGISTRY_HOST }}/${{ secrets.REGISTRY_USERNAME }}/robo-munch-backend-cloud:latest
             docker stop robo-munch-backend-cloud || true
