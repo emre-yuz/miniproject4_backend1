@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/emre-yuz/miniproject4_backend1/compare/v1.0.7...v1.0.8) (2026-06-08)
+
+
+### Bug Fixes
+
+* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ([78649ab](https://github.com/emre-yuz/miniproject4_backend1/commit/78649ab9b04ad9517b490aa46b35457d28fe880a))
+
 ## [1.0.7](https://github.com/emre-yuz/miniproject4_backend1/compare/v1.0.6...v1.0.7) (2026-06-08)
 
 
